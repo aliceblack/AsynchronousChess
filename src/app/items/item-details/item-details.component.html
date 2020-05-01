@@ -22,8 +22,8 @@
         <label for="item-phone-work">Work</label>
         <input class="form-control" name="item-phone-work" [(ngModel)]="item.phone.work" placeholder="0123456789"/>
       </div>
-      <button class="btn btn-primary" *ngIf="!item._id" (click)="createitem(item)">Create</button>
-      <button class="btn btn-info" *ngIf="item._id" (click)="updateitem(item)">Update</button>
-      <button class="btn btn-danger" *ngIf="item._id" (click)="deleteitem(item._id)">Delete</button>
+      <button class="btn btn-primary" *ngIf="!item._id" (click)="createItem(item)">Create</button>
+      <button class="btn btn-info" *ngIf="item._id" (click)="updateItem(item)">Update</button>
+      <button class="btn btn-danger" *ngIf="item._id" (click)="deleteItem(item._id)">Delete</button>
     </form>
   </div>

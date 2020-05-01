@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
      this.itemService
-      .getitems()
+      .getItems()
       .then((items: Item[]) => {
         this.items = items.map((item) => {
           if (!item.phone) {
@@ -31,17 +31,17 @@ export class ItemListComponent implements OnInit {
       });
   }
 
-  private getIndexOfitem = (itemId: String) => {
+  private getIndexOfItem = (itemId: String) => {
     return this.items.findIndex((item) => {
       return item._id === itemId;
     });
   }
 
-  selectitem(item: Item) {
+  selectItem(item: Item) {
     this.selectedItem = item
   }
 
-  createNewitem() {
+  createNewItem() {
     var item: Item = {
       name: '',
       email: '',
@@ -52,29 +52,29 @@ export class ItemListComponent implements OnInit {
     };
 
     // By default, a newly-created item will have the selected state.
-    this.selectitem(item);
+    this.selectItem(item);
   }
 
-  deleteitem = (itemId: String) => {
-    var idx = this.getIndexOfitem(itemId);
+  deleteItem = (itemId: String) => {
+    var idx = this.getIndexOfItem(itemId);
     if (idx !== -1) {
       this.items.splice(idx, 1);
-      this.selectitem(null);
+      this.selectItem(null);
     }
     return this.items;
   }
 
-  additem = (item: Item) => {
+  addItem = (item: Item) => {
     this.items.push(item);
-    this.selectitem(item);
+    this.selectItem(item);
     return this.items;
   }
 
-  updateitem = (item: Item) => {
-    var idx = this.getIndexOfitem(item._id);
+  updateItem = (item: Item) => {
+    var idx = this.getIndexOfItem(item._id);
     if (idx !== -1) {
       this.items[idx] = item;
-      this.selectitem(item);
+      this.selectItem(item);
     }
     return this.items;
   }
