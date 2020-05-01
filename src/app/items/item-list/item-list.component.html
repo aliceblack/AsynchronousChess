@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-5">
+      <h2>Items</h2>
+      <ul class="list-group">
+        <li class="list-group-item"
+          *ngFor="let item of items"
+          (click)="selectItem(item)"
+          [class.active]="item === selectedItem">
+          {{item.name}}
+        </li>
+      </ul>
+      <button class="btn btn-warning" (click)="createNewItem()">New</button>
+    </div>
+    <div class="col-md-5 col-md-offset-2">
+      <item-details
+        [item]="selectedItem"
+        [createHandler]="addItem"
+        [updateHandler]="updateItem"
+        [deleteHandler]="deleteItem">
+      </item-details>
+    </div>
+  </div>
