@@ -21,7 +21,6 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor (private itemService: ItemService) {}
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
   }
 
   createItem(item: Item) {
