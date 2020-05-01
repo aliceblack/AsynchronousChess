@@ -70,6 +70,9 @@ Copy from dev dependencies to dependencies:
 "@angular/compiler-cli": "^8.0.3",
 ```
 
+## Notes
+Note that `ng serve` is serving the node `server.js` API wich is the one exsposing `/dist` folder.
+
 
 ## API
 Post an item on the API:
