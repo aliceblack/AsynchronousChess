@@ -9,20 +9,29 @@ import { ItemListComponent } from './items/item-list/item-list.component';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { Routes, RouterModule, Router } from '@angular/router'; // CLI imports router
+
+const routes: Routes = [
+  { path: '', component: DashboardComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemDetailsComponent,
-    ItemListComponent
+    ItemListComponent,
+    DashboardComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }
