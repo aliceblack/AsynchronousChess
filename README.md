@@ -82,3 +82,7 @@ POST https://<project-name>.herokuapp.com/api/item
 {"name":"mLab Support","email":"support@mlab.com"}
 ```
 
+## Dev
+```
+ng serve --configuration=remote
+```

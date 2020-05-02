@@ -29,6 +29,30 @@
             "scripts": []
           },
           "configurations": {
+            "remote": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.remote.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -61,6 +85,9 @@
             "browserTarget": "asynchronouschess:build"
           },
           "configurations": {
+            "remote": {
+              "browserTarget": "asynchronouschess:build:remote"
+            },
             "production": {
               "browserTarget": "asynchronouschess:build:production"
             }
@@ -109,6 +136,9 @@
             "devServerTarget": "asynchronouschess:serve"
           },
           "configurations": {
+            "remote": {
+              "devServerTarget": "asynchronouschess:serve:remote"
+            },
             "production": {
               "devServerTarget": "asynchronouschess:serve:production"
             }
