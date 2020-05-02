@@ -10,7 +10,10 @@ import { HttpClientModule }    from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { Routes, RouterModule, Router } from '@angular/router'; // CLI imports router
+import { Routes, RouterModule, Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // CLI imports router
+
+import { MatSliderModule } from '@angular/material/slider';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -28,7 +31,9 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],
