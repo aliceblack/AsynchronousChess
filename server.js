@@ -5,11 +5,11 @@ var ObjectID = mongodb.ObjectID;
 
 var ITEMS_COLLECTION = "items";
 
-var cors = require('cors');
-app.use(cors());
-
 var app = express();
 app.use(bodyParser.json());
+
+var cors = require('cors');
+app.use(cors());
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
