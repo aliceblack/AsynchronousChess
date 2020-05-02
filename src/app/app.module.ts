@@ -13,10 +13,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // CLI imports router
 
-import { MatSliderModule } from '@angular/material/slider';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
+  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({
@@ -24,7 +25,8 @@ const routes: Routes = [
     AppComponent,
     ItemDetailsComponent,
     ItemListComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -33,7 +35,6 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

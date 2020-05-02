@@ -87,5 +87,3 @@ POST https://<project-name>.herokuapp.com/api/item
 ng serve --configuration=remote
 ```
 
-## Angular Material
-Project uses Angular Material.
