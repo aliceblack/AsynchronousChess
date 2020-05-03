@@ -14,6 +14,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // CLI imports router
 
 import { AdminComponent } from './admin/admin.component';
+ 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
     ItemDetailsComponent,
     ItemListComponent,
     DashboardComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

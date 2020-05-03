@@ -18,6 +18,9 @@ app.use(express.static(distDir));
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
+var Chess = require("chess.js").Chess;
+
+
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
@@ -100,3 +103,46 @@ app.delete("/api/item/:id", function(req, res) {
         }
     });
 });
+
+
+function chessBoardCreate() {
+  var chess = new Chess();
+  return chess;
+} 
+
+function chessBoardLoad(fenString) {
+  var chess = new Chess(fenString);
+  return chess;
+} 
+
+function chessBoardToFen(chess) {
+  let board = chess.fen();
+  return board;
+} 
+
+function chessBoardToAscci(chess) {
+  let board = chess.ascii();
+  return board;
+} 
+
+function chessBoardMoves(chess) {
+  let moves = chess.moves({ verbose: true });
+  return moves;
+} 
+
+function chessBoardMove(from, to) {
+  //returning a move object if the move was legal, otherwise null
+  let move = chess.move({ from: from, to: to });
+  return move;
+}
+
+function chessBoardMove(from, to) {
+  //returns true if the game has ended via checkmate, stalemate, draw, threefold repetition, or insufficient material. Otherwise, returns false
+  let gameOver = chess.game_over();
+  return gameOver;
+}
+
+function gameIdCreate(){
+  import { v4 as uuidv4 } from 'uuid';
+  return uuidv4();
+}
