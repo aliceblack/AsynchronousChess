@@ -104,7 +104,7 @@ app.delete("/api/item/:id", function(req, res) {
     });
 });
 
-
+/* CHess */
 function chessBoardCreate() {
   var chess = new Chess();
   return chess;
@@ -130,19 +130,55 @@ function chessBoardMoves(chess) {
   return moves;
 } 
 
-function chessBoardMove(from, to) {
+function chessBoardMove(chess, from, to) {
   //returning a move object if the move was legal, otherwise null
   let move = chess.move({ from: from, to: to });
-  return move;
+  let fen = 'invalidMove';
+  if(move!=null){
+    fen = chess.fen();
+  }
+  return fen;
 }
 
-function chessBoardMove(from, to) {
+function chessBoardGameOver(chess) {
   //returns true if the game has ended via checkmate, stalemate, draw, threefold repetition, or insufficient material. Otherwise, returns false
   let gameOver = chess.game_over();
   return gameOver;
 }
 
-function gameIdCreate(){
+/* Game */
+function idCrete(){
   import { v4 as uuidv4 } from 'uuid';
   return uuidv4();
+}
+
+function gameCreate(whiteName, blackName){
+  let chess = chessBoardCreate();
+  let fen = chessBoardToFen(chess);
+  let id = gameIdCreate();
+  return {id: id, fen: fen, white: whiteName, black: blackName, state:'running'};
+}
+
+function gameMoves(id){
+  let chess = getChess(id);
+  return chessBoardMoves(chess);
+}
+
+function gameMove(id, from, to){
+  let chess = getChess(id);
+  let fenMoveResult = chessBoardMove(chess, from, to);
+  if(fenMoveResult!='invalidMove'){
+    let status = chessBoardGameOver(fenMoveResult)
+    gameUpdate(id, fenMoveResult, status);
+  }else{
+
+  }
+}
+
+function gameUpdate(id, fen, status){
+
+}
+
+function gameGet(id){
+
 }
