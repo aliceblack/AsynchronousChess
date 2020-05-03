@@ -1,0 +1,40 @@
+<div class="container">
+
+    <br>
+    <br>
+    <br>
+    <br>
+      
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h3 class="font-coursive">Create a game</h3>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <input (keyup)="onKey($event)" type="text" class="form-control" placeholder="White player name" aria-label="White player name" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <input (keyup)="onKey($event)" type="text" class="form-control" placeholder="Black player name" aria-label="Black player name" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <button class="btn btn-warning btn-lg btn-block"  (click)="goToGameLoad()">Create</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <button class="btn btn-dark btn-lg btn-block"  (click)="goToGameStart()">Back</button>
+        </div>
+    </div>
+    
+    
+</div>
+

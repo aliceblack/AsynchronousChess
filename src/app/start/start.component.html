@@ -1,0 +1,47 @@
+<div class="container">
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h3 class="font-coursive">Create a game</h3>
+        </div>
+    </div>
+      
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <button class="btn btn-warning btn-lg btn-block"  (click)="goToGameCreate()">Create new</button>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h3 class="font-coursive">Load a game</h3>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <input (keyup)="onKey($event)" type="text" class="form-control" placeholder="Game id" aria-label="Game id" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <button class="btn btn-warning btn-lg btn-block"  (click)="goToGameLoad()">Load existing</button>
+        </div>
+    </div>
+
+    
+    
+</div>
+

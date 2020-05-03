@@ -14,11 +14,18 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // CLI imports router
 
 import { AdminComponent } from './admin/admin.component';
+import { StartComponent } from './start/start.component';
+import { CreateComponent } from './create/create.component';
+import { LoadComponent } from './load/load.component';
+import { BoardComponent } from './board/board.component';
  
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: StartComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'create', component: CreateComponent },
+  { path: 'load', component: LoadComponent },
+  { path: 'board', component: BoardComponent },
 ];
 
 @NgModule({
@@ -28,6 +35,10 @@ const routes: Routes = [
     ItemListComponent,
     DashboardComponent,
     AdminComponent,
+    StartComponent,
+    CreateComponent,
+    LoadComponent,
+    BoardComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
