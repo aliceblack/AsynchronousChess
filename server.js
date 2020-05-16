@@ -4,6 +4,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var ITEMS_COLLECTION = "items";
+var GAMES_COLLECTION = "items";
 
 var app = express();
 app.use(bodyParser.json());
@@ -104,7 +105,7 @@ app.delete("/api/item/:id", function(req, res) {
     });
 });
 
-/* CHess */
+/* Chess */
 function chessBoardCreate() {
   var chess = new Chess();
   return chess;
@@ -146,11 +147,6 @@ function chessBoardGameOver(chess) {
   return gameOver;
 }
 
-/* Game */
-function idCrete(){
-  import { v4 as uuidv4 } from 'uuid';
-  return uuidv4();
-}
 
 function gameCreate(whiteName, blackName){
   let chess = chessBoardCreate();
@@ -159,13 +155,28 @@ function gameCreate(whiteName, blackName){
   return {id: id, fen: fen, white: whiteName, black: blackName, state:'running'};
 }
 
+function gameIdCreate(){
+  import { v4 as uuidv4 } from 'uuid';
+  return uuidv4();
+}
+
+function gameSave(game){
+  db.collection(GAMES_COLLECTION).insertOne(game, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to save new game.");
+    } else {
+      return doc.ops[0];
+    }
+  });
+}
+
 function gameMoves(id){
-  let chess = getChess(id);
+  let chess = gameGet(id);
   return chessBoardMoves(chess);
 }
 
 function gameMove(id, from, to){
-  let chess = getChess(id);
+  let chess = gameGet(id);
   let fenMoveResult = chessBoardMove(chess, from, to);
   if(fenMoveResult!='invalidMove'){
     let status = chessBoardGameOver(fenMoveResult)
@@ -180,5 +191,44 @@ function gameUpdate(id, fen, status){
 }
 
 function gameGet(id){
-
+  db.collection(GAMES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to get game");
+    } else {
+      return doc;
+    }
+  });
 }
+
+
+
+/* Create game */
+app.put("/api/game", function(req, res) {
+  if (!req.body.blackName) {
+    handleError(res, "Invalid user input", "Must provide a blackName.", 400);
+  } else if (!req.body.whiteName) {
+    handleError(res, "Invalid user input", "Must provide a whiteName.", 400);
+  } else {
+    var newGame = gameCreate(whiteName, blackName)
+    gameSave(newGame);
+    res.status(201).json(newGame);
+  }
+});
+
+/* Get game */
+app.get("/api/game/:id", function(req, res) {
+  let game = gameGet(req.params.id);
+  res.status(201).json(game);
+});
+
+/* Get game moves */
+app.get("/api/game/:id/moves", function(req, res) {
+  let moves = gameMoves(req.params.id);
+  res.status(201).json(moves);
+});
+
+/* Get game move */
+app.post("/api/game/:id", function(req, res) {
+  let moveResult = gameMove(req.params.id, eq.body.from, eq.body.to);
+  res.status(201).json(moveResult);
+});
