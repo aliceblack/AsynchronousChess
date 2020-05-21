@@ -1,6 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var uuidv4 = require("uuid");
+
 var ObjectID = mongodb.ObjectID;
 
 var ITEMS_COLLECTION = "items";
@@ -143,7 +145,7 @@ function chessBoardMove(chess, from, to) {
 
 function chessBoardGameOver(chess) {
   //returns true if the game has ended via checkmate, stalemate, draw, threefold repetition, or insufficient material. Otherwise, returns false
-  let gameOver = chess.game_over();
+  let gameOver = chess.gameOver;
   return gameOver;
 }
 
@@ -152,12 +154,12 @@ function gameCreate(whiteName, blackName){
   let chess = chessBoardCreate();
   let fen = chessBoardToFen(chess);
   let id = gameIdCreate();
-  return {id: id, fen: fen, white: whiteName, black: blackName, state:'running'};
+  let ascii = chess.ascii();
+  return {id: id, fen: fen, white: whiteName, black: blackName, state:'running', ascii: ascii};
 }
 
 function gameIdCreate(){
-  import { v4 as uuidv4 } from 'uuid';
-  return uuidv4();
+  return uuidv4.v4();
 }
 
 function gameSave(game){
@@ -171,32 +173,61 @@ function gameSave(game){
 }
 
 function gameMoves(id){
-  let chess = gameGet(id);
-  return chessBoardMoves(chess);
+  return new Promise((resolve, reject)=>{
+    gameGet(id).then(game=>{
+      let chess = chessBoardLoad(game.fen)
+      let moves = chessBoardMoves(chess);
+      resolve(moves);
+    })
+    .catch(error=>{
+      reject(error)
+    });
+  });
 }
 
 function gameMove(id, from, to){
-  let chess = gameGet(id);
-  let fenMoveResult = chessBoardMove(chess, from, to);
-  if(fenMoveResult!='invalidMove'){
-    let status = chessBoardGameOver(fenMoveResult)
-    gameUpdate(id, fenMoveResult, status);
-  }else{
-
-  }
+  return new Promise((resolve, reject)=>{
+    gameGet(id).then(game=>{
+      let chess = chessBoardLoad(game.fen)
+      let fenMoveResult = chessBoardMove(chess, from, to);
+      if(fenMoveResult!='invalidMove'){
+        let status = chessBoardGameOver(fenMoveResult)
+        let chessResult = chessBoardLoad(fenMoveResult);
+        let ascii = chessResult.ascii();
+        let update = gameUpdate(id, fenMoveResult, status, ascii);
+        resolve(update);
+      }else{
+        reject(fenMoveResult)
+      }
+    })
+    .catch(error=>{
+      reject(error)
+    });
+  });
 }
 
-function gameUpdate(id, fen, status){
-
+function gameUpdate(id, fen, status, ascii){
+  return new Promise((resolve, reject)=>{
+    var newvalues = { $set: {fen: fen, status: status, ascii: ascii } };
+    db.collection(GAMES_COLLECTION).updateOne({ id: id }, newvalues, function(err, res) {
+      if (err) {
+        reject(err.message);
+      } else {
+        resolve(res);
+      }
+    });
+  });
 }
 
 function gameGet(id){
-  db.collection(GAMES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to get game");
-    } else {
-      return doc;
-    }
+  return new Promise((resolve, reject)=>{
+    db.collection(GAMES_COLLECTION).findOne({ id: id }, function(err, doc) {
+      if (err) {
+        reject(err.message);
+      } else {
+        resolve(doc);
+      }
+    });
   });
 }
 
@@ -209,6 +240,8 @@ app.put("/api/game", function(req, res) {
   } else if (!req.body.whiteName) {
     handleError(res, "Invalid user input", "Must provide a whiteName.", 400);
   } else {
+    var blackName=req.body.blackName;
+    var whiteName=req.body.whiteName;
     var newGame = gameCreate(whiteName, blackName)
     gameSave(newGame);
     res.status(201).json(newGame);
@@ -217,18 +250,28 @@ app.put("/api/game", function(req, res) {
 
 /* Get game */
 app.get("/api/game/:id", function(req, res) {
-  let game = gameGet(req.params.id);
-  res.status(201).json(game);
+  gameGet(req.params.id).then(game=>{
+    res.status(200).json(game);
+  })
+  .catch(error=>{
+    handleError(res, error, "Failed to get game");
+  });
 });
 
 /* Get game moves */
 app.get("/api/game/:id/moves", function(req, res) {
-  let moves = gameMoves(req.params.id);
-  res.status(201).json(moves);
+  gameMoves(req.params.id).then(moves=>{
+    res.status(200).json(moves);
+  }).catch(error=>{
+    handleError(res, error, "Failed to get game moves");
+  });
 });
 
-/* Get game move */
-app.post("/api/game/:id", function(req, res) {
-  let moveResult = gameMove(req.params.id, eq.body.from, eq.body.to);
-  res.status(201).json(moveResult);
+/* Post game move */
+app.post("/api/game/:id/move", function(req, res) {
+  gameMove(req.params.id, req.body.from, req.body.to).then(moveResult=>{
+    res.status(200).json(moveResult);
+  }).catch(error=>{
+    handleError(res, error, "Failed to move");
+  });
 });
