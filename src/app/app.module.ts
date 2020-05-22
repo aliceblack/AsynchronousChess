@@ -18,14 +18,15 @@ import { StartComponent } from './start/start.component';
 import { CreateComponent } from './create/create.component';
 import { LoadComponent } from './load/load.component';
 import { BoardComponent } from './board/board.component';
- 
+
+
 
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'create', component: CreateComponent },
-  { path: 'load', component: LoadComponent },
-  { path: 'board', component: BoardComponent },
+  { path: 'load/:gameId', component: LoadComponent },
+  { path: 'board/:gameId', component: BoardComponent },
 ];
 
 @NgModule({

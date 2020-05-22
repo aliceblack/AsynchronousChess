@@ -87,3 +87,7 @@ POST https://<project-name>.herokuapp.com/api/item
 ng serve --configuration=remote
 ```
 
+## Land on a game
+```
+/load/{gameId}
+```

@@ -17,7 +17,6 @@ font-family: 'Satisfy', cursive;
     color: black !important;
     background-color: #ffc107 !important;
     border-color: #848383 !important;
-
 }
 
 .font-coursive{
@@ -30,4 +29,10 @@ font-family: 'Satisfy', cursive;
 
 .separator{
     padding-top: 6em;
+}
+
+
+.newlines {
+    font-family: 'Space Mono', monospace;
+    white-space: pre-wrap;
 }

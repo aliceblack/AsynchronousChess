@@ -13,10 +13,10 @@ export class StartComponent implements OnInit {
   ngOnInit() {
   }
 
-  value = '';
+  gameId = '';
 
   onKey(event: any) { 
-    this.value = event.target.value;
+    this.gameId = event.target.value;
   }
 
   goToGameCreate() {
@@ -24,7 +24,7 @@ export class StartComponent implements OnInit {
   }
 
   goToGameLoad() {
-    this.router.navigate(['load']);
+    this.router.navigate(['load'.concat("/").concat(this.gameId)]);
   }
 
 }

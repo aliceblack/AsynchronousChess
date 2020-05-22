@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiHost: ""
+  apiHost: "https://asynchronous-chess.herokuapp.com"
 };

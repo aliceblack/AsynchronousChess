@@ -231,8 +231,6 @@ function gameGet(id){
   });
 }
 
-
-
 /* Create game */
 app.put("/api/game", function(req, res) {
   if (!req.body.blackName) {
@@ -275,3 +273,5 @@ app.post("/api/game/:id/move", function(req, res) {
     handleError(res, error, "Failed to move");
   });
 });
+
+

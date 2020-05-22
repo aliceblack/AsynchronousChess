@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-load',
@@ -13,11 +13,16 @@ export class LoadComponent implements OnInit {
   gameId="000-000";
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(
+      (params) => {
+        this.gameId = params.get('gameId');
+      }
+    )
   }
 
 
   goToGameBoard() {
-    this.router.navigate(['board']);
+    this.router.navigate(['board'.concat("/").concat(this.gameId)]);
   }
 
   goToGameStart() {

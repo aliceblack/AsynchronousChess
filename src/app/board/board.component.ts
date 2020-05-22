@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-board',
@@ -8,9 +9,25 @@ import { Router } from '@angular/router';
 })
 export class BoardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
+  gameId;
+  white;
+  black;
+  state;
+  ascii;
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(
+      (params) => {
+        this.gameId = params.get('gameId');
+        this.apiService.gameGet(this.gameId).subscribe(game=>{
+          this.white=game.white;
+          this.black=game.black;
+          this.state=game.state;
+          this.ascii=game.ascii;
+        });
+      }
+    )
   }
 
   goToGameStart() {
