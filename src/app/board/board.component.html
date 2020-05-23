@@ -25,7 +25,7 @@
     </div>
     <div class="row mt-2">
         <div class="col-md-12">
-            <select class="font-coursive" [(ngModel)]="selectedMove">
+            <select class="font-coursive form-control" [(ngModel)]="selectedMove">
                 <option *ngFor="let move of moves" [ngValue]="move">{{move.from}} to {{move.to}}</option>
             </select>
         </div>
