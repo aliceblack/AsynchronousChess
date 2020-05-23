@@ -194,8 +194,15 @@ function gameMove(id, from, to){
         let status = chessBoardGameOver(fenMoveResult)
         let chessResult = chessBoardLoad(fenMoveResult);
         let ascii = chessResult.ascii();
-        let update = gameUpdate(id, fenMoveResult, status, ascii);
-        resolve(update);
+        gameUpdate(id, fenMoveResult, status, ascii)
+        .then(update=>{
+          gameGet(id).then(gameUpdated=>{
+            resolve(gameUpdated);
+          });
+        })
+        .catch(error=>{
+          reject(error)
+        });
       }else{
         reject(fenMoveResult)
       }
@@ -267,8 +274,8 @@ app.get("/api/game/:id/moves", function(req, res) {
 
 /* Post game move */
 app.post("/api/game/:id/move", function(req, res) {
-  gameMove(req.params.id, req.body.from, req.body.to).then(moveResult=>{
-    res.status(200).json(moveResult);
+  gameMove(req.params.id, req.body.from, req.body.to).then(gameUpdated=>{
+    res.status(200).json(gameUpdated);
   }).catch(error=>{
     handleError(res, error, "Failed to move");
   });

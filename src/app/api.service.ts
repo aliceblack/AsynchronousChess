@@ -34,10 +34,10 @@ export class ApiService {
 
   gameMove(gameId: string, from: string, to: string){
     let url = this.configurationService.getApiHost().concat("/api/game/").concat(gameId).concat("/move")
-    let move: Move;
+    let move = new Move();
     move.from = from;
     move.to = to;
-    return this.http.post<Moveresult>(url, move);
+    return this.http.post<Game>(url, move);
   }
 
 }

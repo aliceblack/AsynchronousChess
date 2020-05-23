@@ -1,6 +1,14 @@
 <div class="container">
 
     <br>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <h4 class="font-coursive">White: {{white}}</h4>
+        </div>
+        <div class="col-md-6">
+            <h4 class="font-coursive">Black: {{black}}</h4>
+        </div>
+    </div>
       
     <div class="row mt-2">
         <div class="col-md-12">
@@ -9,29 +17,29 @@
     </div>
     <div class="row mt-2">
         <div class="col-md-12">
-            <h4 class="font-coursive">Moves here....</h4>
+            <select class="font-coursive" [(ngModel)]="selectedMove">
+                <option *ngFor="let move of moves" [ngValue]="move">{{move.from}} to {{move.to}}</option>
+            </select>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-md-12">
-            <h4 class="font-coursive">{{gameId}}:</h4>
+            <button class="btn btn-warning btn-lg btn-block"  (click)="makeMove()">Make move</button>
         </div>
     </div>
+
     <div class="row mt-2">
         <div class="col-md-12">
-            <h4 class="font-coursive">White: {{white}}</h4>
+            <h4 class="font-coursive">Game id: {{gameId}}</h4>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="col-md-12">
-            <h4 class="font-coursive">Black: {{black}}</h4>
-        </div>
-    </div>
+
     <div class="row mt-2">
         <div class="col-md-12">
             <h4 class="font-coursive">State: {{state}}</h4>
         </div>
     </div>
+
     <div class="row mt-2">
         <div class="col-md-12">
             <button class="btn btn-dark btn-lg btn-block"  (click)="goToGameStart()">Back</button>

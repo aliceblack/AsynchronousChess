@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Moveresult } from '../moveresult';
 
 @Component({
   selector: 'app-board',
@@ -25,9 +26,29 @@ export class BoardComponent implements OnInit {
           this.black=game.black;
           this.state=game.state;
           this.ascii=game.ascii;
+          this.getMoves(this.gameId);
         });
       }
     )
+  }
+
+  moves;
+  getMoves(gameId){
+    this.apiService.gameMoves(gameId).subscribe(moves=>{
+      this.moves=moves;
+    });
+  }
+
+
+  selectedMove;
+  makeMove(){
+    this.apiService.gameMove(this.gameId, this.selectedMove.from, this.selectedMove.to).subscribe(game=>{
+      this.white=game.white;
+        this.black=game.black;
+        this.state=game.state;
+        this.ascii=game.ascii;
+        this.getMoves(this.gameId);
+    });
   }
 
   goToGameStart() {
