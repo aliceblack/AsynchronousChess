@@ -22,15 +22,22 @@ export class BoardComponent implements OnInit {
       (params) => {
         this.gameId = params.get('gameId');
         this.apiService.gameGet(this.gameId).subscribe(game=>{
-          this.white=game.white;
-          this.black=game.black;
-          this.state=game.state;
-          this.ascii=game.ascii;
-          this.getMoves(this.gameId);
+          if(game===null){
+            this.gameNotFound=true;
+          }else{
+            this.gameNotFound=false;
+            this.white=game.white;
+            this.black=game.black;
+            this.state=game.state;
+            this.ascii=game.ascii;
+            this.getMoves(this.gameId);
+          }
         });
       }
     )
   }
+
+  gameNotFound=false;
 
   moves;
   getMoves(gameId){

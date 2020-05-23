@@ -1,4 +1,12 @@
-<div class="container">
+<div class="container" *ngIf="gameNotFound">
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h4 class="font-coursive">Game not found</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!gameNotFound">
 
     <br>
     <div class="row mt-2">
