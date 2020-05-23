@@ -1,5 +1,27 @@
 # Asynchronouschess
 
+Play chess with a friend, play whenever you want!
+
+https://asynchronous-chess.herokuapp.com/
+
+
+## Gui
+Start:  
+![start](/images/create_load.PNG)  
+
+Create:  
+![create](/images/create.PNG)  
+
+Load:  
+![load](/images/load.PNG)  
+
+Board:  
+![board](/images/board.PNG)  
+
+Moves:
+![moves](/images/moves.PNG)
+
+# Angular Cli
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
 
 ## Development server
@@ -27,7 +49,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-# On Heroku
+# Heroku
 The project uses the MEAN stack, the app is an Angular Web App with a NodeJS API and a Mongo mLab Heroku sevice.
 
 File `package.json`:
@@ -87,7 +109,10 @@ POST https://<project-name>.herokuapp.com/api/item
 ng serve --configuration=remote
 ```
 
-## Land on a game
+## Land on a game using rounting
 ```
-/load/{gameId}
+/{route}/{gameId}
 ```
+
+
+
