@@ -15,10 +15,10 @@ Create:
 Load:  
 ![load](/images/load.PNG)  
 
-Board:  
+Board, move by click:  
 ![board](/images/board.PNG)  
 
-Moves:
+Moves, move by selection:  
 ![moves](/images/moves.PNG)
 
 # Angular Cli
