@@ -49,24 +49,42 @@ export class BoardComponent implements OnInit {
     });
   }
 
-
   selectedMove;
   makeMove(){
-    this.apiService.gameMove(this.gameId, this.selectedMove.from, this.selectedMove.to).subscribe(game=>{
-      this.white=game.white;
-        this.black=game.black;
-        this.state=game.state;
-        this.ascii=game.ascii;
-        this.board=game.board;
-        this.getMoves(this.gameId);
-    });
+    this.move(this.selectedMove.from, this.selectedMove.to)
   }
 
   goToGameStart() {
     this.router.navigate(['']);
   }
 
+  from=null;
+  to=null;
   onClickCell(event) {
     console.log(event.target.id)
+    let cell=event.target.id;
+    console.log(this.from===null)
+    if(this.from===null){
+      this.from=cell;
+    }else{
+      this.to=cell;
+      this.move(this.from, this.to);
+    }
+  }
+
+  move(from, to){
+    this.apiService.gameMove(this.gameId, from, to).subscribe(game=>{
+      this.white=game.white;
+        this.black=game.black;
+        this.state=game.state;
+        this.ascii=game.ascii;
+        this.board=game.board;
+        this.getMoves(this.gameId);
+        this.from=null;
+        this.to=null;
+    }, error=>{
+        this.from=null;
+        this.to=null;
+    });
   }
 }
