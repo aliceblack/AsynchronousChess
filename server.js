@@ -155,8 +155,10 @@ function gameCreate(whiteName, blackName){
   let fen = chessBoardToFen(chess);
   let id = gameIdCreate();
   let ascii = chess.ascii();
-  return {id: id, fen: fen, white: whiteName, black: blackName, state:'running', ascii: ascii};
+  let board = chess.board()
+  return {id: id, fen: fen, white: whiteName, black: blackName, state:'running', ascii: ascii, board: board};
 }
+
 
 function gameIdCreate(){
   return uuidv4.v4();
@@ -194,7 +196,8 @@ function gameMove(id, from, to){
         let status = chessBoardGameOver(fenMoveResult)
         let chessResult = chessBoardLoad(fenMoveResult);
         let ascii = chessResult.ascii();
-        gameUpdate(id, fenMoveResult, status, ascii)
+        let board = chessResult.board();
+        gameUpdate(id, fenMoveResult, status, ascii, board)
         .then(update=>{
           gameGet(id).then(gameUpdated=>{
             resolve(gameUpdated);
@@ -213,9 +216,9 @@ function gameMove(id, from, to){
   });
 }
 
-function gameUpdate(id, fen, status, ascii){
+function gameUpdate(id, fen, status, ascii, board){
   return new Promise((resolve, reject)=>{
-    var newvalues = { $set: {fen: fen, status: status, ascii: ascii } };
+    var newvalues = { $set: {fen: fen, status: status, ascii: ascii, board: board } };
     db.collection(GAMES_COLLECTION).updateOne({ id: id }, newvalues, function(err, res) {
       if (err) {
         reject(err.message);
@@ -280,5 +283,4 @@ app.post("/api/game/:id/move", function(req, res) {
     handleError(res, error, "Failed to move");
   });
 });
-
 

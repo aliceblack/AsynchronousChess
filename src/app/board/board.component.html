@@ -19,8 +19,34 @@
     </div>
       
     <div class="row mt-2">
-        <div class="col-md-12">
-            <h4 class="font-coursive newlines">{{ascii}}</h4>
+        <div class="col-md-12 monospace chessboard-box" *ngIf="board!=null">
+            <div class="board-row">
+                <div  class="board-row-letter">8</div>          <div id="a8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][0] | chesspiece }}</div>          <div id="b8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][1] | chesspiece }}</div>          <div id="c8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][2] | chesspiece }}</div>          <div id="d8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][3] | chesspiece }}</div>         <div id="e8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][4] | chesspiece }}</div>      <div id="f8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][5] | chesspiece }}</div>     <div id="g8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][6] | chesspiece }}</div>      <div id="h8" class="board-row-cell" (click)="onClickCell($event)">{{board[0][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">7</div>          <div id="a7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][0] | chesspiece }}</div>          <div id="b7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][1] | chesspiece }}</div>          <div id="c7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][2] | chesspiece }}</div>          <div id="d7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][3] | chesspiece }}</div>         <div id="e7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][4] | chesspiece }}</div>      <div id="f7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][5] | chesspiece }}</div>     <div id="g7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][6] | chesspiece }}</div>      <div id="h7" class="board-row-cell" (click)="onClickCell($event)">{{board[1][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">6</div>          <div id="a6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][0] | chesspiece }}</div>          <div id="b6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][1] | chesspiece }}</div>          <div id="c6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][2] | chesspiece }}</div>          <div id="d6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][3] | chesspiece }}</div>         <div id="e6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][4] | chesspiece }}</div>      <div id="f6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][5] | chesspiece }}</div>     <div id="g6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][6] | chesspiece }}</div>      <div id="h6" class="board-row-cell" (click)="onClickCell($event)">{{board[2][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">5</div>          <div id="a5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][0] | chesspiece }}</div>          <div id="b5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][1] | chesspiece }}</div>          <div id="c5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][2] | chesspiece }}</div>          <div id="d5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][3] | chesspiece }}</div>         <div id="e5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][4] | chesspiece }}</div>      <div id="f5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][5] | chesspiece }}</div>     <div id="g5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][6] | chesspiece }}</div>      <div id="h5" class="board-row-cell" (click)="onClickCell($event)">{{board[3][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">4</div>          <div id="a4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][0] | chesspiece }}</div>          <div id="b4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][1] | chesspiece }}</div>          <div id="c4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][2] | chesspiece }}</div>          <div id="d4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][3] | chesspiece }}</div>         <div id="e4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][4] | chesspiece }}</div>      <div id="f4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][5] | chesspiece }}</div>     <div id="g4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][6] | chesspiece }}</div>      <div id="h4" class="board-row-cell" (click)="onClickCell($event)">{{board[4][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">3</div>          <div id="a3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][0] | chesspiece }}</div>          <div id="b3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][1] | chesspiece }}</div>          <div id="c3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][2] | chesspiece }}</div>          <div id="d3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][3] | chesspiece }}</div>         <div id="e3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][4] | chesspiece }}</div>      <div id="f3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][5] | chesspiece }}</div>     <div id="g3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][6] | chesspiece }}</div>      <div id="h3" class="board-row-cell" (click)="onClickCell($event)">{{board[5][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">2</div>          <div id="a2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][0] | chesspiece }}</div>          <div id="b2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][1] | chesspiece }}</div>          <div id="c2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][2] | chesspiece }}</div>          <div id="d2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][3] | chesspiece }}</div>         <div id="e2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][4] | chesspiece }}</div>      <div id="f2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][5] | chesspiece }}</div>     <div id="g2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][6] | chesspiece }}</div>      <div id="h2" class="board-row-cell" (click)="onClickCell($event)">{{board[6][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">1</div>          <div id="a1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][0] | chesspiece }}</div>          <div id="b1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][1] | chesspiece }}</div>          <div id="c1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][2] | chesspiece }}</div>          <div id="d1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][3] | chesspiece }}</div>         <div id="e1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][4] | chesspiece }}</div>      <div id="f1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][5] | chesspiece }}</div>     <div id="g1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][6] | chesspiece }}</div>      <div id="h1" class="board-row-cell" (click)="onClickCell($event)">{{board[7][7] | chesspiece }}</div>
+            </div>
+            <div class="board-row">
+                <div  class="board-row-letter">.</div>          <div  class="board-row-letter">a</div>          <div  class="board-row-letter">b</div>          <div  class="board-row-letter">c</div>          <div  class="board-row-letter">d</div>         <div  class="board-row-letter">e</div>      <div  class="board-row-letter">f</div>     <div  class="board-row-letter">g</div>      <div  class="board-row-letter">h</div>
+            </div>
         </div>
     </div>
     <div class="row mt-2">
@@ -53,7 +79,6 @@
             <button class="btn btn-dark btn-lg btn-block"  (click)="goToGameStart()">Back</button>
         </div>
     </div>
-    
     
 </div>
 

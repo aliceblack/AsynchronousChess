@@ -7,4 +7,5 @@ export class Game {
     state: string;
     ascii: string;
     status: string;
+    board: string;
 }

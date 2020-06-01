@@ -12,11 +12,13 @@ export class BoardComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
+  letters = ["a","b","c","d","e","f","g","h"];
   gameId;
   white;
   black;
   state;
   ascii;
+  board;
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
       (params) => {
@@ -30,6 +32,7 @@ export class BoardComponent implements OnInit {
             this.black=game.black;
             this.state=game.state;
             this.ascii=game.ascii;
+            this.board=game.board;
             this.getMoves(this.gameId);
           }
         });
@@ -54,11 +57,16 @@ export class BoardComponent implements OnInit {
         this.black=game.black;
         this.state=game.state;
         this.ascii=game.ascii;
+        this.board=game.board;
         this.getMoves(this.gameId);
     });
   }
 
   goToGameStart() {
     this.router.navigate(['']);
+  }
+
+  onClickCell(event) {
+    console.log(event.target.id)
   }
 }

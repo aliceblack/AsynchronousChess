@@ -18,8 +18,7 @@ import { StartComponent } from './start/start.component';
 import { CreateComponent } from './create/create.component';
 import { LoadComponent } from './load/load.component';
 import { BoardComponent } from './board/board.component';
-
-
+import { ChesspiecePipe } from './chesspiece.pipe';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
@@ -40,6 +39,7 @@ const routes: Routes = [
     CreateComponent,
     LoadComponent,
     BoardComponent,
+    ChesspiecePipe,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -47,7 +47,7 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

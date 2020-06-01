@@ -32,7 +32,50 @@ font-family: 'Satisfy', cursive;
 }
 
 
-.newlines {
+.newlines{
     font-family: 'Space Mono', monospace;
     white-space: pre-wrap;
+}
+
+.monospace{
+    font-family: 'Space Mono', monospace;
+}
+
+.board-row-cell{
+    margin: 0em;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    border-style: outset;
+    border-color: #ffc107b3;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 3em;
+    height: 3em;
+    min-width: 3em;
+    min-height: 3em;
+}
+
+.board-row-letter{
+    margin: 0em;
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 3em;
+    height: 3em;
+    min-width: 3em;
+    min-height: 3em;
+}
+
+.board-row{
+    margin: 0em;
+}
+
+.chessboard-box{
+    height: 80%;
+    width: 80%;
 }
