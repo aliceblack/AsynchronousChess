@@ -1,7 +1,7 @@
 {
   "name": "asynchronouschess",
   "short_name": "asynchronouschess",
-  "theme_color": "#1976d2",
+  "theme_color": "#ffc107",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
