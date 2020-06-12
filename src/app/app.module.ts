@@ -19,6 +19,8 @@ import { CreateComponent } from './create/create.component';
 import { LoadComponent } from './load/load.component';
 import { BoardComponent } from './board/board.component';
 import { ChesspiecePipe } from './chesspiece.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
@@ -47,7 +49,8 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
