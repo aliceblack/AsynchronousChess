@@ -1,9 +1,10 @@
-# Asynchronouschess
+# Asynchronouschess 
 
 Play chess with a friend, play whenever you want!
 
 https://asynchronous-chess.herokuapp.com/
 
+<img src="images/circle-cropped.png" width="50"> Asynchronous Chess!
 
 ## Gui
 Start:  

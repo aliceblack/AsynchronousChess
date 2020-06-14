@@ -12,7 +12,6 @@ export class BoardComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
-  letters = ["a","b","c","d","e","f","g","h"];
   gameId;
   white;
   black;
@@ -61,15 +60,17 @@ export class BoardComponent implements OnInit {
   from=null;
   to=null;
   onClickCell(event) {
-    console.log(event.target.id)
+    event.target.classList.add('selected-cell');
     let cell=event.target.id;
-    console.log(this.from===null)
     if(this.from===null){
       this.from=cell;
     }else{
       this.to=cell;
       this.move(this.from, this.to);
     }
+    setTimeout(function () {
+      event.target.classList.remove('selected-cell');
+    }, 500);
   }
 
   move(from, to){

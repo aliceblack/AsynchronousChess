@@ -19,6 +19,14 @@ font-family: 'Satisfy', cursive;
     border-color: #848383 !important;
 }
 
+.dark-cell{
+    background-color: #ffc107;
+}
+
+.selected-cell{
+    background-color: #c29308;
+}
+
 .font-coursive{
     font-family: 'Satisfy', cursive;
 }
