@@ -2,6 +2,8 @@
 
 Play chess with a friend, play whenever you want!
 
+Link may not work since Heroku hosting service id discontinuing some services.
+
 https://asynchronous-chess.herokuapp.com/
 
 <img src="images/circle-cropped.png" width="50"> Asynchronous Chess!
