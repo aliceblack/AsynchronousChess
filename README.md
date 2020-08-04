@@ -20,7 +20,7 @@ Board, move by click:
 ![board](/images/board.PNG)  
 
 Moves, move by selection:  
-![moves](/images/moves.PNG)
+![moves](/images/moves.png)
 
 # Angular Cli
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
