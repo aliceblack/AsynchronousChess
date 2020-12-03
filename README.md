@@ -2,26 +2,24 @@
 
 Play chess with a friend, play whenever you want!
 
-Link may not work since Heroku hosting service id discontinuing some services.
+⚠️ Reload the link a couple time if the app is not connecting, it will wake up, it's free hosting in the end! 💰💰💰
 
 https://asynchronous-chess.herokuapp.com/
 
 <img src="images/circle-cropped.png" width="50"> Asynchronous Chess!
 
-## Gui
+## Play
+Board, move by clicking a piece and then to the desired position:  
+![board](/images/board.jpg)  
+
 Start:  
-![start](/images/create_load.PNG)  
+![start](/images/create_load.jpg)  
 
 Create:  
-![create](/images/create.PNG)  
+![create](/images/create.jpg)  
 
 Load:  
-![load](/images/load.PNG)  
-
-Board, move by click:  
-![board](/images/board.PNG)  
-
-Moves, move by selection:  
+Moves can be made by touch or by selection from a list:  
 ![moves](/images/moves.png)
 
 # Angular Cli
